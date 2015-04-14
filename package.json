@@ -1,0 +1,33 @@
+{
+	"name": "ping-routes",
+	"version": "1.0.0",
+	"description": "Ping routes for node.js",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://gyulanemeth@github.com/gyulanemeth/ping-routes.git"
+	},
+	"keywords": [
+		"nodejs",
+		"ping",
+		"routes",
+		"mongo",
+		"mongodb",
+		"redis",
+		"file"
+	],
+	"author": "Gyula Németh",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/gyulanemeth/ping-routes/issues"
+	},
+	"homepage": "https://github.com/gyulanemeth/ping-routes",
+	"dependencies": {
+		"express-ping": "^1.1.0",
+		"mongoose": "3.8.12",
+		"redis": "0.10.3",
+	}
+}
