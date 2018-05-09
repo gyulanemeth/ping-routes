@@ -1,6 +1,5 @@
 var	fs			= require("fs"),
 	redis		= require("redis"),
-	mongoose	= require("mongoose"),
 	health		= require("express-ping");
 
 
@@ -11,6 +10,7 @@ function sendPong(res) {
 
 module.exports = function attachHandlers(config) {
 	var app = config.app;
+	var mongoose = config.mongoose;
 
 	app.get("/ping", function(req, res) {
 		sendPong(res);
