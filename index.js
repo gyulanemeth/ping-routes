@@ -1,6 +1,5 @@
 var	fs			= require("fs"),
 	redis		= require("redis"),
-	mongoose	= require("mongoose"),
 	health		= require("express-ping");
 
 
@@ -11,6 +10,8 @@ function sendPong(res) {
 
 module.exports = function attachHandlers(config) {
 	var app = config.app;
+	// For backward compatibility, we can still use the the mongoose dependency but from now, we can add it as config parameter
+	var mongoose = config.mongoose || require("mongoose");
 
 	app.get("/ping", function(req, res) {
 		sendPong(res);
