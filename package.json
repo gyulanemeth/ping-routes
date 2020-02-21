@@ -27,7 +27,7 @@
 	"homepage": "https://github.com/gyulanemeth/ping-routes",
 	"dependencies": {
 		"express-ping": "^1.1.0",
-		"mongoose": "3.8.12",
+		"mongoose": "5.9.1",
 		"redis": "0.10.3"
 	}
 }
