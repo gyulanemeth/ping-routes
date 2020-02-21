@@ -12,8 +12,9 @@ module.exports = function attachHandlers(config) {
 	var app = config.app;
 	// For backward compatibility, we can still use the the mongoose dependency but from now, we can add it as config parameter
 	var mongoose = config.mongoose || require("mongoose");
+	var urlPrefix = config.urlPrefix || "";
 
-	app.get("/ping", function(req, res) {
+	app.get(urlPrefix + "/ping", function(req, res) {
 		sendPong(res);
 	});
 
@@ -26,7 +27,7 @@ module.exports = function attachHandlers(config) {
 			console.log(err);
 		});
 
-		app.get("/ping/redis", function(req, res) {
+		app.get(urlPrefix + "/ping/redis", function(req, res) {
 			redisClient.hgetall("nonExistingPingHashForTest", function(err, result) {
 				if (err) {
 					return console.log("/ping/redis - unsuccessful hgetall");
@@ -43,7 +44,7 @@ module.exports = function attachHandlers(config) {
 			createdAt: {type: Date, default: Date.now}
 		}));
 
-		app.get("/ping/mongo", function(req, res) {
+		app.get(urlPrefix + "/ping/mongo", function(req, res) {
 			pingModel.findOne({}, function(err, result) {
 				if (err) {
 					return console.log("/ping/mongo - unsuccessful findOne");
@@ -55,7 +56,7 @@ module.exports = function attachHandlers(config) {
 	}
 	
 	if (config.file) {
-		app.get("/ping/file", function(req, res) {
+		app.get(urlPrefix + "/ping/file", function(req, res) {
 			fs.writeFile("./pingFileTest", "PONG", {encoding: "utf8"}, function(err) {
 				if (err) {
 					return console.log("/ping/file - unsuccessful fs.writeFile");
@@ -79,6 +80,6 @@ module.exports = function attachHandlers(config) {
 	}
 	
 	if (config.sysinfo) {
-		app.use(health.ping("/ping/sysinfo"));
+		app.use(health.ping(urlPrefix + "/ping/sysinfo"));
 	}
 };
